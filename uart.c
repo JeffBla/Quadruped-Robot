@@ -110,23 +110,15 @@ void __interrupt(low_priority)  Lo_ISR(void)
 }
 
 void servoControl(int id,int degree,int speed){
-    char command[50] = "#";
-    char id_string[10];
-    sprintf(id_string,"%d",id);
-    strcat(command,id_string);
-    strcat(command,"P");
-    
-    char degree_string[10];
+    char command[50];
+
+    //mapping degree to pulse width
+    //-90 ~ 90 degree -> 500 ~ 2500 us
     degree = 11*degree + 1500;
-    sprintf(degree_string,"%d",degree);
-    strcat(command,degree_string);
-    strcat(command,"T");
     
-    char speed_string[10];
-    sprintf(speed_string,"%d",speed);
-    strcat(command,speed_string);
-    strcat(command,"\r\n");
-    
+    sprintf(command,"#%dP%dT%d\r\n",id,degree,speed);
+
+    //sending command from pic to servo controller
     UART_Write_Text(command);     
     return;
 }
