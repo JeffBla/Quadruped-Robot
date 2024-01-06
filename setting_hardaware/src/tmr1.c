@@ -3,7 +3,7 @@
 #include <stdbool.h>
 #include <xc.h>
 
-void TMR1Init(bool isINT) {
+void TMR1_Init(bool isINT) {
     T1CONbits.RD16 = 0;
     T1CONbits.TMR1CS = 0;     // Fosc/4
     T1CONbits.T1CKPS = 0b00;  // 1:1
@@ -15,7 +15,7 @@ void TMR1Init(bool isINT) {
     }
 }
 
-void TMR1Run(int high_byte, int low_byte) {
+void TMR1_Run(int high_byte, int low_byte) {
     T1CONbits.TMR1ON = 0;
     TMR1H = high_byte;
     TMR1L = low_byte;

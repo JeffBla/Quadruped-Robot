@@ -78,11 +78,11 @@ void UART_Read() {
     return;
 }
 
-char* GetString() {
+char* UART_GetString() {
     return mystring;
 }
 
-void servoControl(int id, int degree, int speed) {
+void UART_ServoControl(int id, int degree, int speed) {
     char command[50];
 
     // mapping degree to pulse width
