@@ -10,6 +10,7 @@
       <itemPath>setting_hardaware/include/tmr1.h</itemPath>
       <itemPath>setting_hardaware/include/uart.h</itemPath>
       <itemPath>setting_hardaware/include/adc.h</itemPath>
+      <itemPath>setting_hardaware/include/motion.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -24,6 +25,7 @@
       <itemPath>setting_hardaware/src/tmr1.c</itemPath>
       <itemPath>setting_hardaware/src/uart.c</itemPath>
       <itemPath>setting_hardaware/src/adc.c</itemPath>
+      <itemPath>setting_hardaware/src/motion.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
