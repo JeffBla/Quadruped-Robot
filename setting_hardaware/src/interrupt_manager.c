@@ -31,7 +31,7 @@ void __interrupt(low_priority) Low_ISR(void) {
 
         int servoId = ADC_FindServoId(ADCON0bits.CHS);
         if (servoId != 0) {
-            UART_ServoControl(servoId, result, 100);
+            uart_servoControl(servoId, result, 100);
             __delay_ms(100);
         }
 

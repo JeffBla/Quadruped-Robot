@@ -7,22 +7,27 @@
 
 #include "setting_hardaware/include/motion.h"
 #include "setting_hardaware/include/setting.h"
+#include "setting_hardaware/include/config.h"
 
 // command example: #21P2500T5000\r\n
 
 void main() {
     SYSTEM_Initialize();
 
-    //    Motion_Test();
-
-    //    UART_ServoControl(1, -90, 100);
-    //    UART_ServoControl(5, 50, 100);
-    //    UART_ServoControl(9, -50, 100);
-    //    __delay_ms(2000);
-    //    UART_ServoControl(1, 75, 100);
-
     int walk_state = 0;
-    while (1) {
+    
+    while(1) {
+        if(isWalk){
+            Motion_Walk(walk_state);
+            walk_state = (walk_state + 1) % 6;
+        } 
+        else {
+            Motion_WalkInit();
+            walk_state = 0;
+        }
+    }
+    
+    /*while (1) {
         if(isWalk){
             Motion_Walk(walk_state);
             walk_state = (walk_state + 1) % 4;
@@ -30,6 +35,6 @@ void main() {
             Motion_Stand();
             walk_state = 0;
         }
-    }
+    }*/
     return;
 }

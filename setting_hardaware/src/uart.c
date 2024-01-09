@@ -1,3 +1,5 @@
+#include "../include/uart.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -82,9 +84,16 @@ char* UART_GetString() {
     return mystring;
 }
 
-void UART_ServoControl(int id, int degree, int speed) {
-    char command[50];
+void UART_ServoControl(int legid, int servoid, int degree, int speed) {
+    int id = ServoId[legid][servoid];
+    degree = (degree + ServoErr[legid][servoid]) * ServoDirAdj[legid][servoid];
+    uart_servoControl(id, degree, speed);
+    return;
+}
 
+void uart_servoControl(int id, int degree, int speed) {    
+    char command[50];
+    
     // mapping degree to pulse width
     //-90 ~ 90 degree -> 500 ~ 2500 us
     degree = 11 * degree + 1500;
