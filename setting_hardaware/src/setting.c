@@ -59,13 +59,13 @@ void SYSTEM_Initialize(void) {
     ADCON1 = 0x0f;
 
     OSCILLATOR_Initialize();
-//    INTERRUPT_Initialize();
+    INTERRUPT_Initialize();
     UART_Initialize();
 //    ADC_Initialize(true);
     //    TMR1_Initialize();
 
 //    Servo_Init();
-//
+//    Motion_Init();
 //    ADC_GO(0);
 }
 
@@ -80,10 +80,8 @@ void OSCILLATOR_Initialize(void) {
 void Servo_Init(void) {
     for (int i = 0; i < nLeg; i++) {
             for(int j = 0 ; j < 3; j++){
-                if(i == 4){
                 UART_ServoControl(ServoId[i][j], 10, 100);
-                __delay_ms(100);
-            }
+                __delay_ms(1000);
             }
     }
 }

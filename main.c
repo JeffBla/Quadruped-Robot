@@ -13,15 +13,23 @@
 void main() {
     SYSTEM_Initialize();
 
-    Stand();
-    
+    //    Motion_Test();
+
     //    UART_ServoControl(1, -90, 100);
     //    UART_ServoControl(5, 50, 100);
     //    UART_ServoControl(9, -50, 100);
     //    __delay_ms(2000);
     //    UART_ServoControl(1, 75, 100);
 
-    while (1)
-        ;
+    int walk_state = 0;
+    while (1) {
+        if(isWalk){
+            Motion_Walk(walk_state);
+            walk_state = (walk_state + 1) % 4;
+        }else{
+            Motion_Stand();
+            walk_state = 0;
+        }
+    }
     return;
 }

@@ -5,6 +5,18 @@
 
 #include "setting.h"
 
-void Stand();
+void Motion_Init();
+
+void Motion_Stand();
+
+void Motion_Walk();
+
+void Motion_Test();
+
+void Leg_WalkForwardup(int legId);
+
+void Leg_WalkForwardDown(int legId);
+
+void Leg_WalkBackwardDown(int legId);
 
 #endif  // MOTION_H
