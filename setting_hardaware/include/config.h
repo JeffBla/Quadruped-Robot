@@ -14,13 +14,13 @@
 
 #define angle_up_big 90
 #define angle_up_small 30
-#define angle_mid_long 35
+#define angle_mid_long 30
 #define angle_mid_short 45
-#define angle_down_long 75
+#define angle_down_long 85
 #define angle_down_short 45
 #define angle_mid_long_lift 65
 #define angle_mid_short_lift 75 
-#define angle_down_long_lift 45 
+#define angle_down_long_lift 50 
 #define angle_down_short_lift 15 
 
 #define delaytime 1000
