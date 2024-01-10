@@ -4,10 +4,10 @@
 #include <xc.h>
 
 void INTERRUPT_Initialize(void) {
-    // INT0
-    // TRISBbits.RB0 = 1;
-    // INTCONbits.INT0IE = 1;
-    // INTCONbits.INT0IF = 0;
+     // INT0
+     TRISBbits.RB0 = 1;
+     INTCONbits.INT0IE = 1;
+     INTCONbits.INT0IF = 0;
 
     // Global
     RCONbits.IPEN = 1;    // enable Interrupt Priority mode
@@ -17,12 +17,11 @@ void INTERRUPT_Initialize(void) {
 
 void __interrupt(high_priority) Hi_ISR(void) {
     if (INTCONbits.INT0IF) {
+        isWalk = !isWalk; 
+        
         __delay_ms(500);
         INTCONbits.INT0IF = 0;
-    } else if (PIR1bits.TMR1IF) {
-        TMR1_Run(0x00, 0x00);
-        PIR1bits.TMR1IF = 0;
-    }
+    } 
 }
 
 void __interrupt(low_priority) Low_ISR(void) {
@@ -32,7 +31,7 @@ void __interrupt(low_priority) Low_ISR(void) {
 
         int servoId = ADC_FindServoId(ADCON0bits.CHS);
         if (servoId != 0) {
-            UART_ServoControl(servoId, result, 100);
+            uart_servoControl(servoId, result, 100);
             __delay_ms(100);
         }
 

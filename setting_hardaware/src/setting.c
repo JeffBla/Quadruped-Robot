@@ -61,8 +61,12 @@ void SYSTEM_Initialize(void) {
     OSCILLATOR_Initialize();
     INTERRUPT_Initialize();
     UART_Initialize();
-    ADC_Initialize(true);
+//    ADC_Initialize(true);
     //    TMR1_Initialize();
+
+//    Servo_Init();
+//    Motion_Init();
+//    ADC_GO(0);
 }
 
 void OSCILLATOR_Initialize(void) {
@@ -71,4 +75,48 @@ void OSCILLATOR_Initialize(void) {
     IRCF0 = 1;
 
     // RCON = 0x0000;
+}
+
+/*void Servo_Init(void) {
+    for (int i = 0; i < nLeg; i++) {
+        for(int j = 0 ; j < 3; j++){
+            UART_ServoControl(i, j, 10, 100);
+            __delay_ms(1000);
+        }
+    }
+}*/
+
+int ServoAngleTran(int id, int servoid, int angle) {
+    switch(id)
+    {
+        case RFLEG:
+            switch(servoid)
+            {
+                case UPSER:
+                    return angle * -1;
+                case MIDSER:
+                    return angle * -1;
+                case DOWNSER:
+                    return angle;
+            }
+            break;
+        case RBLEG:
+            switch(servoid)
+            {
+                case UPSER:
+                    return angle;
+                case MIDSER:
+                    return angle * -1;
+                case DOWNSER:
+                    return angle;
+            }
+            break;
+        case LFLEG:
+            return angle;
+            break;
+        case LBLEG:
+            return angle * -1;
+            break;
+    }
+    return angle;
 }

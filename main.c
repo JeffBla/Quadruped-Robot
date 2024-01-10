@@ -5,21 +5,36 @@
 #include <string.h>
 #include <xc.h>
 
+#include "setting_hardaware/include/motion.h"
 #include "setting_hardaware/include/setting.h"
-#define _XTAL_FREQ 8000000
+#include "setting_hardaware/include/config.h"
 
 // command example: #21P2500T5000\r\n
-int degree = -90;
 
 void main() {
     SYSTEM_Initialize();
 
-    servoControl(5, 50, 3000);
-    servoControl(9, 50, 3000);
-    __delay_ms(3000);
-    servoControl(1, 75, 3000);
-
-    while (1)
-        ;
+    int walk_state = 0;
+    
+    while(1) {
+        if(isWalk){
+            Motion_Walk(walk_state);
+            walk_state = (walk_state + 1) % 6;
+        } 
+        else {
+            Motion_WalkInit();
+            walk_state = 0;
+        }
+    }
+    
+    /*while (1) {
+        if(isWalk){
+            Motion_Walk(walk_state);
+            walk_state = (walk_state + 1) % 4;
+        }else{
+            Motion_Stand();
+            walk_state = 0;
+        }
+    }*/
     return;
 }
