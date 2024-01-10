@@ -61,12 +61,10 @@ void SYSTEM_Initialize(void) {
     OSCILLATOR_Initialize();
     INTERRUPT_Initialize();
     UART_Initialize();
-//    ADC_Initialize(true);
-    //    TMR1_Initialize();
+    ADC_Initialize(true);
 
 //    Servo_Init();
 //    Motion_Init();
-//    ADC_GO(0);
 }
 
 void OSCILLATOR_Initialize(void) {

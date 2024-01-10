@@ -13,6 +13,7 @@
 #define _XTAL_FREQ 8000000
 
 bool isWalk = false;
+bool isAdc = false;
 
 void SYSTEM_Initialize(void);
 

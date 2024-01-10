@@ -21,7 +21,7 @@ void main() {
             Motion_Walk(walk_state);
             walk_state = (walk_state + 1) % 6;
         } 
-        else {
+        else if(!isAdc){
             Motion_WalkInit();
             walk_state = 0;
         }
